@@ -42,6 +42,7 @@ class GenerateQRCode:
         self.lb_qr_img = window.findChild(QLabel, 'lb_qr_img')
 
         self.btn_save_qr = window.findChild(QPushButton, 'btn_save_qr')
+        self.btn_save_qr.setEnabled(False)
         self.btn_save_qr.clicked.connect(self.save_qr_code)
 
     def color_picker(self, button):
@@ -73,6 +74,8 @@ class GenerateQRCode:
         self.lb_qr_img_info.setText(f'QR Code com {pixmap_png.width()}x{pixmap_png.height()}')
         self.lb_qr_img.setPixmap(pixmap_png)
         buffer_png.close()
+
+        self.btn_save_qr.setEnabled(True)
 
     def save_qr_code(self):
         home = expanduser("~")
