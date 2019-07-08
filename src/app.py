@@ -41,8 +41,8 @@ class GenerateQRCode:
         self.lb_qr_img_info = window.findChild(QLabel, 'lb_qr_img_info')
         self.lb_qr_img = window.findChild(QLabel, 'lb_qr_img')
 
-        btn_save_qr = window.findChild(QPushButton, 'btn_save_qr')
-        btn_save_qr.clicked.connect(self.save_qr_code)
+        self.btn_save_qr = window.findChild(QPushButton, 'btn_save_qr')
+        self.btn_save_qr.clicked.connect(self.save_qr_code)
 
     def color_picker(self, button):
         color = QColorDialog.getColor()
@@ -92,7 +92,6 @@ class GenerateQRCode:
                     module_color=self.fg_color,
                     background=self.bg_color
                 )
-                self.open_dialog_success()
             elif response[1] == 'png (*.png)':
                 qrcode.png(
                     file=response[0],
@@ -100,7 +99,6 @@ class GenerateQRCode:
                     module_color=self.fg_color,
                     background=self.bg_color
                 )
-                self.open_dialog_success()
             elif response[1] == 'svg (*.svg)':
                 qrcode.svg(
                     file=response[0],
@@ -108,7 +106,7 @@ class GenerateQRCode:
                     module_color=self.fg_color,
                     background=self.bg_color
                 )
-                self.open_dialog_success()
+            self.open_dialog_success()
 
     def open_dialog_success(self):
         dialog_success = QFile('dialog_success.ui')
